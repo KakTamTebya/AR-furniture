@@ -28,7 +28,9 @@ class ItemCard extends StatelessWidget {
                 cardInfo.name,
                 style: const TextStyle(color: kTextColor),
                 softWrap: true,
-                overflow: TextOverflow.clip,
+                overflow: TextOverflow.ellipsis, // если текст слишком длинный, то появится многоточие в конце
+                maxLines: 2,  // максимальное количество строк 2
+                textScaleFactor: MediaQuery.of(context).textScaleFactor, // учитываем масштабирование текста устройства
               ),
             ),
           ),

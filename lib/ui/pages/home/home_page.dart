@@ -5,6 +5,7 @@ import 'package:ar_furniture/constants.dart';
 import 'package:ar_furniture/mocks/floor_furniture_mock.dart';
 import 'package:ar_furniture/mocks/ceiling_furniture_mock.dart';
 import 'package:ar_furniture/mocks/wall_furniture_mock.dart';
+import 'package:ar_furniture/mocks/default_mocks.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,20 +15,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePage extends State<HomePage> {
-
   var _currentPageIndex = 0;
 
   final _pages = [
     HomePageBody(
-        items: floorFurnitureMock,
-        key: const PageStorageKey("floor")),
+      items: defaultFloorMock,
+      gridViewKey: "floor"),
     HomePageBody(
-        items: ceilingFurnitureMock,
-        key: const PageStorageKey("ceiling")),
+      items: defaultCeilingMock,
+      gridViewKey: "ceiling"),
     HomePageBody(
-        items: wallFurnitureMock,
-        key: const PageStorageKey("wall"))
-  ]; // mock
+      items: defaultWallMock,
+      gridViewKey: "wall"),
+  ];
 
   void _onTap(int index) {
     setState(() {
@@ -36,7 +36,7 @@ class _HomePage extends State<HomePage> {
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: _pages[_currentPageIndex],
@@ -53,14 +53,11 @@ class _HomePage extends State<HomePage> {
         elevation: 0,
         items: const [
           BottomNavigationBarItem(
-              label: "FloorPlaced",
-              icon: Icon(PageIcons.armchair)),
+              label: "FloorPlaced", icon: Icon(PageIcons.armchair)),
           BottomNavigationBarItem(
-              label: "CeilingPlaced",
-              icon: Icon(PageIcons.chandelier)),
+              label: "CeilingPlaced", icon: Icon(PageIcons.chandelier)),
           BottomNavigationBarItem(
-              label: "WallPlaced",
-              icon: Icon(PageIcons.book_shelf)),
+              label: "WallPlaced", icon: Icon(PageIcons.book_shelf)),
         ],
       ),
     );

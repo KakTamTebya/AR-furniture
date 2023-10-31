@@ -21,15 +21,15 @@ class ItemCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(kCircularRadius),
             child: Image.network(cardInfo.menuImageUrl), // mock
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
-              child: Text(
-                cardInfo.name,
-                style: const TextStyle(color: kTextColor),
-                softWrap: true,
-                overflow: TextOverflow.clip,
-              ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: kDefaultPadding / 2),
+            child: Text(
+              cardInfo.name,
+              style: const TextStyle(
+                  color: kTextColor,
+                  fontSize: 14),
+              softWrap: true,
+              overflow: TextOverflow.clip,
             ),
           ),
         ],

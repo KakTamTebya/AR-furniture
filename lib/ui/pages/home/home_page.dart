@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:ar_furniture/custom_icons/page_icons.dart';
 import 'components/home_page_body.dart';
 import 'package:ar_furniture/constants.dart';
-import 'package:ar_furniture/mocks/floor_furniture_mock.dart';
-import 'package:ar_furniture/mocks/ceiling_furniture_mock.dart';
-import 'package:ar_furniture/mocks/wall_furniture_mock.dart';
 import 'package:ar_furniture/mocks/default_mocks.dart';
 
 class HomePage extends StatefulWidget {

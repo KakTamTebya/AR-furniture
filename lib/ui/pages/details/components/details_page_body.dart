@@ -4,6 +4,7 @@ import 'package:ar_furniture/models/furniture_item.dart';
 import 'scroll_item.dart';
 import 'package:readmore/readmore.dart';
 import 'page_view_indicator.dart';
+import '../../model_view/model_view.dart';
 
 class DetailsPageBody extends StatefulWidget {
   final FurnitureItem furnitureItem;
@@ -63,24 +64,59 @@ class _DetailsPageBodyState extends State<DetailsPageBody> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 12),
-            child: ElevatedButton(
-              onPressed: () {}, //TODO
-              style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.white),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15),
+            padding: EdgeInsets.only(
+                bottom: 12,
+                left: totalSize.width * 0.05 + 10,
+                right: totalSize.width * 0.05 + 10),
+            child: Row(
+              children: [
+                ElevatedButton(
+                  onPressed: () {}, //TODO
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.white),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                      fixedSize: MaterialStateProperty.all(Size(
+                        totalSize.width * 0.55 - 10,
+                        totalSize.height * 0.1,
+                      ))),
+                  child: const Text(
+                    "Посмотреть в AR",
+                    style: TextStyle(color: kBottomNavBarColor, fontSize: 20),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 10),
+                  child: ElevatedButton(
+                    onPressed: () => Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ModelView(modelUrl: widget.furnitureItem.modelUrl))), //TODO
+                    style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.white),
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                        ),
+                        fixedSize: MaterialStateProperty.all(Size(
+                          totalSize.width * 0.35 - 20,
+                          totalSize.height * 0.1,
+                        ))),
+                    child: const Text(
+                      "3D Модель",
+                      style: TextStyle(
+                          color: kBottomNavBarColor,
+                          fontSize: 18,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.clip,
+                      softWrap: true,
                     ),
                   ),
-                  fixedSize: MaterialStateProperty.all(Size(
-                    totalSize.width * 0.9,
-                    totalSize.height * 0.1,
-                  ))),
-              child: const Text(
-                "Посмотреть в AR",
-                style: TextStyle(color: kBottomNavBarColor, fontSize: 20),
-              ),
+                ),
+              ],
             ),
           )
         ],

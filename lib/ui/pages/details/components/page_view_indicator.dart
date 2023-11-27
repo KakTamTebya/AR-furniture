@@ -17,7 +17,7 @@ class PageViewIndicator extends StatelessWidget {
       height: 8,
       width: 8,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(kCircularRadius),
+        borderRadius: BorderRadius.circular(defaultCircularRadius),
         color: isActive ? Colors.white : Colors.white24,
       ),
     );
@@ -25,13 +25,14 @@ class PageViewIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Align(
       alignment: Alignment.center,
       child: Container(
         padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: kBottomNavBarColor,
-          borderRadius: BorderRadius.circular(kCircularRadius),
+          color: theme.primaryColor,
+          borderRadius: BorderRadius.circular(defaultCircularRadius),
         ),
         child: Row(
           mainAxisSize: MainAxisSize.min,

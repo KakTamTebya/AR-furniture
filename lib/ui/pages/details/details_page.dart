@@ -1,40 +1,55 @@
 import 'package:flutter/material.dart';
-import 'package:ar_furniture/constants.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:ar_furniture/models/furniture_item.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:ar_furniture/repositories/favourites/abstract_favourites_repository.dart';
 import 'components/details_page_body.dart';
+import 'package:ar_furniture/ui/reused_widgets/appbar_leading_underline.dart';
+import 'package:ar_furniture/blocs/details_page/details_page_bloc.dart';
 
-class DetailsPage extends StatelessWidget {
+@RoutePage()
+class DetailsPage extends StatelessWidget implements AutoRouteWrapper {
+
   final FurnitureItem furnitureItem;
 
-  const DetailsPage({required this.furnitureItem, super.key});
+  final String furnitureItemId;
+
+  const DetailsPage({
+    required this.furnitureItemId,
+    required this.furnitureItem,
+    super.key});
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider(
+      create: (context) => DetailsPageBloc(
+          abstractFavouritesRepository: GetIt.I<AbstractFavouritesRepository>(),
+          furnitureItemId: furnitureItemId)..add(LoadDetailsPage()),
+      child: this,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       appBar: AppBar(
-        backgroundColor: kBackgroundColor,
         elevation: 0,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_sharp, color: kBottomNavBarColor),
-          onPressed: () => Navigator.pop(context),
+          icon: Icon(Icons.arrow_back_sharp, color: theme.primaryColor),
+          onPressed: () => context.router.pop(),
         ),
+        titleSpacing: 5,
         title: Text(
           furnitureItem.name,
-          style: const TextStyle(
-            color: kTextColor,
-            fontWeight: FontWeight.w500,
-          ),
+          maxLines: 2,
         ),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(2.0),
           child: Container(
             alignment: Alignment.centerLeft,
-            child: Container(
-              height: 1,
-              color: kBottomNavBarColor.withOpacity(0.7),
-              width: 56,
-            ),
+            child: const AppBarLeadingUnderline(),
           ),
         ),
       ),

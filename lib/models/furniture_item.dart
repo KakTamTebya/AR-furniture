@@ -1,16 +1,47 @@
-class FurnitureItem {
+import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
+
+part 'furniture_item.g.dart';
+
+@JsonSerializable()
+class FurnitureItem implements Equatable {
+
+  final String id;
+
   final String name;
+
   final String menuImageUrl;
+
   final String description;
-  final String modelUrl;
+
+  final String glbModelUrl;
+
   final List<String>? _imageUrls;
 
   FurnitureItem({
+    required this.id,
     required this.name,
     required this.menuImageUrl,
-    required this.modelUrl,
-    this.description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    required this.glbModelUrl,
+    required this.description,
     List<String>? imageUrls}) : _imageUrls = imageUrls;
 
   List<String> get imageUrls => [menuImageUrl, ...?_imageUrls];
+
+  factory FurnitureItem.fromJson(Map<String, dynamic> json) => _$FurnitureItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$FurnitureItemToJson(this);
+
+  @override
+  List<Object?> get props => [
+    id,
+    name,
+    menuImageUrl,
+    description,
+    glbModelUrl,
+    _imageUrls,
+  ];
+
+  @override
+  bool? get stringify => true;
 }

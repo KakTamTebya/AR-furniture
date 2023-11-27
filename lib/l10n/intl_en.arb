@@ -1,0 +1,10 @@
+{
+  "floorFurniture": "Floor furniture",
+  "wallFurniture": "Wall furniture",
+  "ceilingFurniture": "Ceiling furniture",
+  "favourites": "Favourites",
+  "showMore": "show more",
+  "viewInAR": "View in AR",
+  "view3dModel": "View 3D model",
+  "emptyPageMessage": "There's nothing here yet"
+}

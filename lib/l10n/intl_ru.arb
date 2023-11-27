@@ -1,0 +1,10 @@
+{
+  "floorFurniture": "Напольная мебель",
+  "wallFurniture": "Настенная мебель",
+  "ceilingFurniture": "Потолочная мебель",
+  "favourites": "Избранное",
+  "showMore": "далее",
+  "viewInAR": "Посмотреть в AR",
+  "view3dModel": "3D модель",
+  "emptyPageMessage": "Здесь пока ничего нет"
+}

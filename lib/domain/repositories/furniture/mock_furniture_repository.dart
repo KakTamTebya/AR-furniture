@@ -1,4 +1,4 @@
-import 'package:ar_furniture/models/models.dart';
+import 'package:ar_furniture/domain/models/models.dart';
 import 'package:ar_furniture/mocks/mocks.dart';
 import 'abstract_furniture_repository.dart';
 

@@ -1,37 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:ar_furniture/models/furniture_type.dart';
-import 'package:ar_furniture/routes/router.dart';
+import 'package:ar_furniture/domain/models/furniture_type.dart';
+import 'package:ar_furniture/ui/routes/router.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:ar_furniture/custom_icons/page_icons.dart';
+import 'package:ar_furniture/ui/custom_icons/page_icons.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ar_furniture/blocs/favourites_page/favourites_page_bloc.dart';
-import 'package:get_it/get_it.dart';
-import 'package:ar_furniture/repositories/furniture/abstract_furniture_repository.dart';
-import 'package:ar_furniture/repositories/favourites/abstract_favourites_repository.dart';
+import 'package:ar_furniture/domain/blocs/favourites_page/favourites_page_bloc.dart';
 
 @RoutePage()
-class HomePage extends StatelessWidget implements AutoRouteWrapper {
+class HomePage extends StatelessWidget {
 
   const HomePage({super.key});
-
-  @override
-  Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (context) => FavouritesPageBloc(
-        abstractFurnitureRepository: GetIt.I<AbstractFurnitureRepository>(),
-        abstractFavouritesRepository: GetIt.I<AbstractFavouritesRepository>(),
-      ),
-      child: this,
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
     return AutoTabsRouter(
       routes: [
-        FurnitureListRoute(furnitureType: FloorFurniture()),
-        FurnitureListRoute(furnitureType: WallFurniture()),
-        FurnitureListRoute(furnitureType: CeilingFurniture()),
+        FurnitureListRoute(furnitureType: const FloorFurniture()),
+        FurnitureListRoute(furnitureType: const WallFurniture()),
+        FurnitureListRoute(furnitureType: const CeilingFurniture()),
         const FavouritesRoute(),
       ],
       builder: (context, child) {

@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import '../models/furniture_item.dart';
-import '../models/furniture_type.dart';
-import '../ui/pages/details/details_page.dart';
-import '../ui/pages/favourites/favourites_page.dart';
-import '../ui/pages/home/home_page.dart';
-import '../ui/pages/model/model_page.dart';
-import '../ui/pages/furniture_list/furniture_list_page.dart';
+import 'package:ar_furniture/domain/models/furniture_item.dart';
+import 'package:ar_furniture/domain/models/furniture_type.dart';
+import '../pages/details/details_page.dart';
+import '../pages/favourites/favourites_page.dart';
+import '../pages/home/home_page.dart';
+import '../pages/model/model_page.dart';
+import '../pages/furniture_list/furniture_list_page.dart';
+import '../pages/ar/ar_page.dart';
 
 part 'router.gr.dart';
 
@@ -27,17 +28,21 @@ class AppRouter extends _$AppRouter {
           ),
           AutoRoute(
             page: FavouritesRoute.page,
-            path: "favourites"
+            path: "favourites",
           ),
-        ]
+        ],
     ),
     AutoRoute(
       page: DetailsRoute.page,
-      path: "/details"
+      path: "/details",
     ),
     AutoRoute(
       page: ModelRoute.page,
-      path: "/model"
+      path: "/model",
+    ),
+    AutoRoute(
+      page: ArRoute.page,
+      path: "/ar",
     ),
   ];
 }

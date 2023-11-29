@@ -1,4 +1,4 @@
-import 'package:ar_furniture/models/furniture_item.dart';
+import 'package:ar_furniture/domain/models/furniture_item.dart';
 
 abstract class Mocks {
   static final List<FurnitureItem> floorFurnitureMock = [

@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:ar_furniture/models/models.dart';
+import 'package:ar_furniture/domain/models/models.dart';
 import 'abstract_furniture_repository.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 

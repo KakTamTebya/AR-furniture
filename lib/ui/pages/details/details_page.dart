@@ -1,31 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:ar_furniture/models/furniture_item.dart';
+import 'package:ar_furniture/domain/models/furniture_item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:ar_furniture/repositories/favourites/abstract_favourites_repository.dart';
+import 'package:ar_furniture/domain/repositories/favourites/abstract_favourites_repository.dart';
 import 'components/details_page_body.dart';
 import 'package:ar_furniture/ui/reused_widgets/appbar_leading_underline.dart';
-import 'package:ar_furniture/blocs/details_page/details_page_bloc.dart';
+import 'package:ar_furniture/domain/blocs/details_page/details_page_bloc.dart';
+import 'package:ar_furniture/domain/blocs/favourites_page/favourites_page_bloc.dart';
 
 @RoutePage()
 class DetailsPage extends StatelessWidget implements AutoRouteWrapper {
 
   final FurnitureItem furnitureItem;
 
-  final String furnitureItemId;
-
   const DetailsPage({
-    required this.furnitureItemId,
     required this.furnitureItem,
-    super.key});
+    super.key
+  });
 
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
       create: (context) => DetailsPageBloc(
           abstractFavouritesRepository: GetIt.I<AbstractFavouritesRepository>(),
-          furnitureItemId: furnitureItemId)..add(LoadDetailsPage()),
+          furnitureItemId: furnitureItem.id)..add(LoadDetailsPage()),
       child: this,
     );
   }
@@ -38,7 +37,11 @@ class DetailsPage extends StatelessWidget implements AutoRouteWrapper {
         elevation: 0,
         leading: IconButton(
           icon: Icon(Icons.arrow_back_sharp, color: theme.primaryColor),
-          onPressed: () => context.router.pop(),
+          onPressed: () => {
+            BlocProvider.of<FavouritesPageBloc>(context)
+                .add(const LoadFavouritesPage()),
+            context.router.pop()
+          },
         ),
         titleSpacing: 5,
         title: Text(

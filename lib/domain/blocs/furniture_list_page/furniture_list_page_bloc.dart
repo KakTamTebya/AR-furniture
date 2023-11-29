@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:ar_furniture/models/models.dart';
-import 'package:ar_furniture/repositories/furniture/abstract_furniture_repository.dart';
+import 'package:ar_furniture/domain/models/models.dart';
+import 'package:ar_furniture/domain/repositories/furniture/abstract_furniture_repository.dart';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

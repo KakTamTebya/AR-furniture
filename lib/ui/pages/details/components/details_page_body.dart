@@ -1,10 +1,10 @@
-import 'package:ar_furniture/routes/router.dart';
+import 'package:ar_furniture/ui/routes/router.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:ar_furniture/constants.dart';
-import 'package:ar_furniture/models/furniture_item.dart';
+import 'package:ar_furniture/domain/models/furniture_item.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ar_furniture/blocs/details_page/details_page_bloc.dart';
+import 'package:ar_furniture/domain/blocs/details_page/details_page_bloc.dart';
 import 'package:ar_furniture/generated/l10n.dart';
 import 'scroll_item.dart';
 import 'package:readmore/readmore.dart';
@@ -91,7 +91,8 @@ class _DetailsPageBodyState extends State<DetailsPageBody> {
                   Flexible(
                     flex: 4,
                     child: TextElevatedButton(
-                      function: () => {},
+                      function: () => context.router.push(ArRoute(
+                          glbUrl: widget.furnitureItem.glbModelUrl)),
                       text: S.of(context).viewInAR,
                       fontSize: 16,
                     ),
@@ -115,7 +116,7 @@ class _DetailsPageBodyState extends State<DetailsPageBody> {
                       child: BlocBuilder<DetailsPageBloc, DetailsPageState>(
                         builder: (context, state) {
                           final bloc = BlocProvider.of<DetailsPageBloc>(context);
-                          var favouriteIconColor = const Color(0xFF808080);
+                          var favouriteIconColor = theme.hintColor;
                           if (state is DetailsPageLoaded) {
                             if (state.isFavourite) {
                               favouriteIconColor = Colors.red;

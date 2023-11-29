@@ -1,19 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:ar_furniture/constants.dart';
-import 'package:ar_furniture/models/furniture_item.dart';
+import 'package:ar_furniture/domain/models/furniture_item.dart';
+import 'package:ar_furniture/ui/routes/router.dart';
+import 'package:auto_route/auto_route.dart';
 
 class FurnitureListPageItem extends StatelessWidget {
+
   final FurnitureItem furnitureItem;
-  final VoidCallback press;
+
   const FurnitureListPageItem({
     required this.furnitureItem,
-    required this.press,
-    super.key});
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: press,
+      onTap: () => context.router.push(DetailsRoute(
+          furnitureItem: furnitureItem)),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

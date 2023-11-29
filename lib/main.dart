@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ar_furniture/ui/app.dart';
-import 'package:ar_furniture/repositories/furniture/furniture_repositories.dart';
+import 'package:ar_furniture/domain/repositories/furniture/furniture_repositories.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:ar_furniture/repositories/favourites/favourites_repositories.dart';
+import 'package:ar_furniture/domain/repositories/favourites/favourites_repositories.dart';
 import 'firebase_options.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/rendering.dart';

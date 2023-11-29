@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:ar_furniture/models/furniture_item.dart';
-import 'package:ar_furniture/repositories/favourites/abstract_favourites_repository.dart';
-import 'package:ar_furniture/repositories/furniture/abstract_furniture_repository.dart';
+import 'package:ar_furniture/domain/models/furniture_item.dart';
+import 'package:ar_furniture/domain/repositories/favourites/abstract_favourites_repository.dart';
+import 'package:ar_furniture/domain/repositories/furniture/abstract_furniture_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 

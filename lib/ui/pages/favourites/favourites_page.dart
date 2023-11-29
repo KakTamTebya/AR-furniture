@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:auto_route/annotations.dart';
-import 'package:ar_furniture/blocs/favourites_page/favourites_page_bloc.dart';
+import 'package:ar_furniture/domain/blocs/favourites_page/favourites_page_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ar_furniture/generated/l10n.dart';
 import 'components/favourites_page_item.dart';
@@ -54,7 +54,6 @@ class FavouritesPage extends StatelessWidget {
                   );
                 }
                 if (state is FavouritesPageLoadingFail) {
-                  debugPrint(state.exception.toString());
                   return SliverFillRemaining(
                     child: Center(
                       child: Text(state.exception.toString()),

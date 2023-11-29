@@ -15,13 +15,22 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    ArRoute.name: (routeData) {
+      final args = routeData.argsAs<ArRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ArPage(
+          key: args.key,
+          glbUrl: args.glbUrl,
+        ),
+      );
+    },
     DetailsRoute.name: (routeData) {
       final args = routeData.argsAs<DetailsRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: WrappedRoute(
             child: DetailsPage(
-          furnitureItemId: args.furnitureItemId,
           furnitureItem: args.furnitureItem,
           key: args.key,
         )),
@@ -47,7 +56,7 @@ abstract class _$AppRouter extends RootStackRouter {
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: WrappedRoute(child: const HomePage()),
+        child: const HomePage(),
       );
     },
     ModelRoute.name: (routeData) {
@@ -64,17 +73,52 @@ abstract class _$AppRouter extends RootStackRouter {
 }
 
 /// generated route for
+/// [ArPage]
+class ArRoute extends PageRouteInfo<ArRouteArgs> {
+  ArRoute({
+    Key? key,
+    required String glbUrl,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ArRoute.name,
+          args: ArRouteArgs(
+            key: key,
+            glbUrl: glbUrl,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ArRoute';
+
+  static const PageInfo<ArRouteArgs> page = PageInfo<ArRouteArgs>(name);
+}
+
+class ArRouteArgs {
+  const ArRouteArgs({
+    this.key,
+    required this.glbUrl,
+  });
+
+  final Key? key;
+
+  final String glbUrl;
+
+  @override
+  String toString() {
+    return 'ArRouteArgs{key: $key, glbUrl: $glbUrl}';
+  }
+}
+
+/// generated route for
 /// [DetailsPage]
 class DetailsRoute extends PageRouteInfo<DetailsRouteArgs> {
   DetailsRoute({
-    required String furnitureItemId,
     required FurnitureItem furnitureItem,
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
           DetailsRoute.name,
           args: DetailsRouteArgs(
-            furnitureItemId: furnitureItemId,
             furnitureItem: furnitureItem,
             key: key,
           ),
@@ -89,12 +133,9 @@ class DetailsRoute extends PageRouteInfo<DetailsRouteArgs> {
 
 class DetailsRouteArgs {
   const DetailsRouteArgs({
-    required this.furnitureItemId,
     required this.furnitureItem,
     this.key,
   });
-
-  final String furnitureItemId;
 
   final FurnitureItem furnitureItem;
 
@@ -102,7 +143,7 @@ class DetailsRouteArgs {
 
   @override
   String toString() {
-    return 'DetailsRouteArgs{furnitureItemId: $furnitureItemId, furnitureItem: $furnitureItem, key: $key}';
+    return 'DetailsRouteArgs{furnitureItem: $furnitureItem, key: $key}';
   }
 }
 

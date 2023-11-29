@@ -1,13 +1,12 @@
 import 'dart:async';
-import 'package:ar_furniture/blocs/furniture_list_page/furniture_list_page_bloc.dart';
-import 'package:ar_furniture/models/models.dart';
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:ar_furniture/domain/blocs/furniture_list_page/furniture_list_page_bloc.dart';
+import 'package:ar_furniture/domain/models/models.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:ar_furniture/constants.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:ar_furniture/repositories/furniture/abstract_furniture_repository.dart';
-import 'package:ar_furniture/routes/router.dart';
+import 'package:ar_furniture/domain/repositories/furniture/abstract_furniture_repository.dart';
 import 'components/furniture_list_page_item.dart';
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
 
@@ -69,10 +68,7 @@ class FurnitureListPage extends StatelessWidget implements AutoRouteWrapper {
                     crossAxisSpacing: defaultPadding,
                     mainAxisSpacing: 5,
                     builder: (context, index) => FurnitureListPageItem(
-                      furnitureItem: items[index],
-                      press: () => context.router
-                          .push(DetailsRoute(furnitureItemId: items[index].id,
-                          furnitureItem: items[index])),
+                      furnitureItem: items[index]
                     ),
                   ),
                 ),

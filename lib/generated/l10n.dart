@@ -129,6 +129,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Remove model`
+  String get removeModel {
+    return Intl.message(
+      'Remove model',
+      name: 'removeModel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong. Try again`
+  String get arError {
+    return Intl.message(
+      'Something went wrong. Try again',
+      name: 'arError',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

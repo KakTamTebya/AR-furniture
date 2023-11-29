@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "arError": MessageLookupByLibrary.simpleMessage(
+            "Что-то пошло не так. Попробуйте еще раз."),
         "ceilingFurniture":
             MessageLookupByLibrary.simpleMessage("Потолочная мебель"),
         "emptyPageMessage":
@@ -29,6 +31,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "favourites": MessageLookupByLibrary.simpleMessage("Избранное"),
         "floorFurniture":
             MessageLookupByLibrary.simpleMessage("Напольная мебель"),
+        "removeModel": MessageLookupByLibrary.simpleMessage("Удалить модель"),
         "showMore": MessageLookupByLibrary.simpleMessage("далее"),
         "view3dModel": MessageLookupByLibrary.simpleMessage("3D модель"),
         "viewInAR": MessageLookupByLibrary.simpleMessage("Посмотреть в AR"),

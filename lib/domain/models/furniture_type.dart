@@ -9,6 +9,9 @@ sealed class FurnitureType extends Equatable {
 }
 
 class FloorFurniture implements FurnitureType{
+
+  const FloorFurniture();
+
   @override
   String getCollectionName() {
     return "floor";
@@ -27,6 +30,9 @@ class FloorFurniture implements FurnitureType{
 }
 
 class WallFurniture implements FurnitureType {
+
+  const WallFurniture();
+
   @override
   String getCollectionName() {
     return "wall";
@@ -45,6 +51,9 @@ class WallFurniture implements FurnitureType {
 }
 
 class CeilingFurniture implements FurnitureType {
+
+  const CeilingFurniture();
+
   @override
   String getCollectionName() {
     return "ceiling";

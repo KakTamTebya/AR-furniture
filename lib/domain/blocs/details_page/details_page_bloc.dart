@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:equatable/equatable.dart';
-import 'package:ar_furniture/repositories/favourites/abstract_favourites_repository.dart';
+import 'package:ar_furniture/domain/repositories/favourites/abstract_favourites_repository.dart';
 
 part 'details_page_event.dart';
 part 'details_page_state.dart';

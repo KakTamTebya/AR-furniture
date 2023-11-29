@@ -6,5 +6,7 @@
   "showMore": "show more",
   "viewInAR": "View in AR",
   "view3dModel": "View 3D model",
-  "emptyPageMessage": "There's nothing here yet"
+  "emptyPageMessage": "There's nothing here yet",
+  "removeModel": "Remove model",
+  "arError": "Something went wrong. Try again"
 }

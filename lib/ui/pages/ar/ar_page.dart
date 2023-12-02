@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:collection/collection.dart';
-import 'package:auto_route/annotations.dart';
 import 'package:vector_math/vector_math_64.dart';
 import 'package:ar_furniture/ui/reused_widgets/text_elevated_button.dart';
 import 'package:ar_furniture/generated/l10n.dart';
@@ -35,8 +35,8 @@ class _ArPageState extends State<ArPage> {
   late ARSessionManager arSessionManager;
   late ARObjectManager arObjectManager;
   late ARAnchorManager arAnchorManager;
-  late ARNode? _node;
-  late ARAnchor? _anchor;
+  ARNode? _node;
+  ARAnchor? _anchor;
 
   @override
   void dispose() {
@@ -56,8 +56,8 @@ class _ArPageState extends State<ArPage> {
           Align(
             alignment: Alignment.bottomCenter,
             child: TextElevatedButton(
-                function: onRemoveEverything, 
-                text: S.of(context).removeModel,
+              function: onRemove,
+              text: S.of(context).removeModel,
             ),
           ),
         ],
@@ -84,7 +84,7 @@ class _ArPageState extends State<ArPage> {
     arSessionManager.onPlaneOrPointTap = onPlaneOrPointTapped;
   }
 
-  Future<void> onRemoveEverything() async {
+  Future<void> onRemove() async {
     if (_anchor != null) {
       arAnchorManager.removeAnchor(_anchor!);
     }
@@ -97,24 +97,24 @@ class _ArPageState extends State<ArPage> {
       return;
     }
     var singleHitTestResult = hitTestResults.firstWhereOrNull(
-            (hitTestResult) => hitTestResult.type == ARHitTestResultType.plane);
+      (hitTestResult) => hitTestResult.type == ARHitTestResultType.plane);
     if (singleHitTestResult == null) {
       return;
     }
     var newAnchor =
-    ARPlaneAnchor(transformation: singleHitTestResult.worldTransform);
+      ARPlaneAnchor(transformation: singleHitTestResult.worldTransform);
     bool didAddAnchor = await arAnchorManager.addAnchor(newAnchor) ?? false;
     if (!didAddAnchor) {
       arSessionManager.onError(S.current.arError);
     }
     _anchor = newAnchor;
     var newNode = ARNode(
-        type: NodeType.webGLB,
-        uri: widget.glbUrl,
-        position: Vector3(0.0, 0.0, 0.0),
+      type: NodeType.webGLB,
+      uri: widget.glbUrl,
+      position: Vector3(0.0, 0.0, 0.0),
     );
     bool didAddNodeToAnchor = await arObjectManager.addNode(
-        newNode, planeAnchor: newAnchor) ?? false;
+      newNode, planeAnchor: newAnchor) ?? false;
     if (!didAddNodeToAnchor){
       arSessionManager.onError(S.current.arError);
       _anchor = null;

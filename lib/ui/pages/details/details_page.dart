@@ -32,31 +32,35 @@ class DetailsPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_sharp, color: theme.primaryColor),
-          onPressed: () => {
-            BlocProvider.of<FavouritesPageBloc>(context)
-                .add(const LoadFavouritesPage()),
-            context.router.pop()
-          },
-        ),
-        titleSpacing: 5,
-        title: Text(
-          furnitureItem.name,
-          maxLines: 2,
-        ),
-        bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(2.0),
-          child: Container(
-            alignment: Alignment.centerLeft,
-            child: const AppBarLeadingUnderline(),
+    return PopScope(
+      onPopInvoked: (_) => BlocProvider.of<FavouritesPageBloc>(context)
+          .add(const LoadFavouritesPage()),
+      child: Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_sharp, color: theme.primaryColor),
+            onPressed: () => {
+              BlocProvider.of<FavouritesPageBloc>(context)
+                  .add(const LoadFavouritesPage()),
+              context.router.pop()
+            },
+          ),
+          titleSpacing: 5,
+          title: Text(
+            furnitureItem.name,
+            maxLines: 2,
+          ),
+          bottom: PreferredSize(
+            preferredSize: const Size.fromHeight(2.0),
+            child: Container(
+              alignment: Alignment.centerLeft,
+              child: const AppBarLeadingUnderline(),
+            ),
           ),
         ),
+        body: DetailsPageBody(furnitureItem: furnitureItem),
       ),
-      body: DetailsPageBody(furnitureItem: furnitureItem),
     );
   }
 }

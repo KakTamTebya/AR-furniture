@@ -20,7 +20,10 @@ class FurnitureListPageBloc extends Bloc<FurnitureListPageEvent, FurnitureListPa
       }
       final furnitureItems = await abstractFurnitureRepository
           .getFurnitureItems(furnitureType);
-      emit(FurnitureListPageLoaded(furnitureItems: furnitureItems));
+      emit(furnitureItems.isEmpty
+        ? FurnitureListPageLoadingFail(exception: Exception())
+        : FurnitureListPageLoaded(furnitureItems: furnitureItems)
+      );
     }
     catch (e) {
       emit(FurnitureListPageLoadingFail(exception: e));

@@ -46,12 +46,23 @@ class _ArPageState extends State<ArPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
       body: Stack(
         children: [
           ARView(
             onARViewCreated: onARViewCreated,
             planeDetectionConfig: PlaneDetectionConfig.horizontalAndVertical,
+          ),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 24).copyWith(left: 4),
+              child: IconButton(
+                icon: Icon(Icons.arrow_back_sharp, color: theme.primaryColor),
+                onPressed: () => context.router.pop(),
+              ),
+            ),
           ),
           Align(
             alignment: Alignment.bottomCenter,

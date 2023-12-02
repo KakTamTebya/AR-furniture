@@ -5,6 +5,7 @@ import 'package:ar_furniture/domain/blocs/favourites_page/favourites_page_bloc.d
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ar_furniture/generated/l10n.dart';
 import 'components/favourites_page_item.dart';
+import 'components/favourites_page_shimmer.dart';
 
 @RoutePage()
 class FavouritesPage extends StatelessWidget {
@@ -37,33 +38,32 @@ class FavouritesPage extends StatelessWidget {
             const SliverToBoxAdapter(child: SizedBox(height: 15)),
             BlocBuilder<FavouritesPageBloc, FavouritesPageState>(
               builder: (context, state) {
-                if (state is FavouritesPageLoaded) {
-                  final itemsList = state.items.entries.toList();
-                  if (itemsList.isEmpty) {
-                    return SliverFillRemaining(
-                      child: Center(
-                        child: Text(S.of(context).emptyPageMessage),
-                      ),
-                    );
-                  }
-                  return SliverList.builder(
-                    itemCount: itemsList.length,
-                    itemBuilder: (context, index) => FavouritesPageItem(
-                        furnitureItem: itemsList[index].key,
-                        isFavourite: itemsList[index].value),
-                  );
-                }
-                if (state is FavouritesPageLoadingFail) {
-                  return SliverFillRemaining(
-                    child: Center(
-                      child: Text(state.exception.toString()),
-                    ),
-                  );
-                }
-                return const SliverFillRemaining(
-                  child: Center(
-                    child: CircularProgressIndicator()
-                  )
+                // if (state is FavouritesPageLoaded) {
+                //   final itemsList = state.items.entries.toList();
+                //   if (itemsList.isEmpty) {
+                //     return SliverFillRemaining(
+                //       child: Center(
+                //         child: Text(S.of(context).emptyPageMessage),
+                //       ),
+                //     );
+                //   }
+                //   return SliverList.builder(
+                //     itemCount: itemsList.length,
+                //     itemBuilder: (context, index) => FavouritesPageItem(
+                //         furnitureItem: itemsList[index].key,
+                //         isFavourite: itemsList[index].value),
+                //   );
+                // }
+                // if (state is FavouritesPageLoadingFail) {
+                //   return SliverFillRemaining(
+                //     child: Center(
+                //       child: Text(state.exception.toString()),
+                //     ),
+                //   );
+                // }
+                return SliverList.builder(
+                  itemCount: 7,
+                  itemBuilder: (context, index) => const FavouritesPageShimmer(),
                 );
               },
             ),

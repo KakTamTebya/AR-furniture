@@ -9,6 +9,7 @@ import 'package:get_it/get_it.dart';
 import 'package:ar_furniture/domain/repositories/furniture/abstract_furniture_repository.dart';
 import 'components/furniture_list_page_item.dart';
 import 'package:dynamic_height_grid_view/dynamic_height_grid_view.dart';
+import 'components/furniture_list_page_shimmer.dart';
 
 @RoutePage()
 class FurnitureListPage extends StatelessWidget implements AutoRouteWrapper {
@@ -23,9 +24,11 @@ class FurnitureListPage extends StatelessWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (context) => FurnitureListPageBloc(
-        abstractFurnitureRepository: GetIt.I<AbstractFurnitureRepository>(),
-        furnitureType: furnitureType)..add(const LoadFurnitureList()),
+      create: (context) =>
+      FurnitureListPageBloc(
+          abstractFurnitureRepository: GetIt.I<AbstractFurnitureRepository>(),
+          furnitureType: furnitureType)
+        ..add(const LoadFurnitureList()),
       child: this,
     );
   }
@@ -40,24 +43,24 @@ class FurnitureListPage extends StatelessWidget implements AutoRouteWrapper {
             .add(LoadFurnitureList(completer: completer));
         return completer.future;
       },
-      child: BlocBuilder<FurnitureListPageBloc, FurnitureListPageState>(
-        builder: (context, state) {
-          if (state is FurnitureListPageLoaded){
-            final items = state.furnitureItems;
-            return CustomScrollView(
-              restorationId: furnitureType.getCollectionName(),
-              slivers: [
-                SliverAppBar(
-                  title: Text(furnitureType.toString()),
-                  bottom: PreferredSize(
-                    preferredSize: const Size.fromHeight(2),
-                    child: Divider(
-                      height: 1,
-                      color: theme.primaryColor.withOpacity(0.7),
-                    )
-                  ),
-                ),
-                SliverPadding(
+      child: CustomScrollView(
+        restorationId: furnitureType.getCollectionName(),
+        slivers: [
+          SliverAppBar(
+            title: Text(furnitureType.toString()),
+            bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(2),
+                child: Divider(
+                  height: 1,
+                  color: theme.primaryColor.withOpacity(0.7),
+                )
+            ),
+          ),
+          BlocBuilder<FurnitureListPageBloc, FurnitureListPageState>(
+            builder: (context, state) {
+              if (state is FurnitureListPageLoaded) {
+                final items = state.furnitureItems;
+                return SliverPadding(
                   padding: const EdgeInsets.symmetric(
                       horizontal: defaultPadding)
                       .copyWith(top: 15),
@@ -68,23 +71,35 @@ class FurnitureListPage extends StatelessWidget implements AutoRouteWrapper {
                     crossAxisSpacing: defaultPadding,
                     mainAxisSpacing: 5,
                     builder: (context, index) => FurnitureListPageItem(
-                      furnitureItem: items[index]
+                        furnitureItem: items[index]
                     ),
                   ),
+                );
+              }
+              if (state is FurnitureListPageLoadingFail) {
+                return SliverFillRemaining(
+                  child: Center(
+                    child: Text(state.exception.toString())
+                  ),
+                );
+              }
+              return SliverPadding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: defaultPadding)
+                    .copyWith(top: 15),
+                sliver: SliverDynamicHeightGridView(
+                  key: PageStorageKey(furnitureType.getCollectionName()),
+                  itemCount: 8,
+                  crossAxisCount: 2,
+                  crossAxisSpacing: defaultPadding,
+                  mainAxisSpacing: 5,
+                  builder: (context, index) => const FurnitureListPageShimmer(),
                 ),
-              ],
-            );
-          }
-          if (state is FurnitureListPageLoadingFail) {
-            return Center(
-              child: Text(state.exception.toString()),
-            );
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        }
-      ),
+              );
+            },
+          ),
+        ],
+      )
     );
   }
 }

@@ -54,6 +54,7 @@ dependencies:
   ar_flutter_plugin: ^0.7.3
   collection: ^1.17.2
   vector_math: ^2.1.4
+  shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:

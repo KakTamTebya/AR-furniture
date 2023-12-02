@@ -23,7 +23,7 @@ class FurnitureListPageItem extends StatelessWidget {
         children: <Widget>[
           ClipRRect(
             borderRadius: BorderRadius.circular(defaultCircularRadius),
-            child: Image.network(furnitureItem.menuImageUrl), // mock
+            child: Image.network(furnitureItem.menuImageUrl),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding / 2),

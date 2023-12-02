@@ -26,7 +26,7 @@ class FavouritesPageItem extends StatelessWidget {
       onTap: () => context.router.push(DetailsRoute(
           furnitureItem: furnitureItem)),
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 10).copyWith(bottom: 5),
+        margin: const EdgeInsets.symmetric(horizontal: 10).copyWith(bottom: 7),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         height: 100,
         decoration: BoxDecoration(
@@ -38,7 +38,7 @@ class FavouritesPageItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(defaultCircularRadius),
-              child: Image.network(furnitureItem.menuImageUrl), // mock
+              child: Image.network(furnitureItem.menuImageUrl),
             ),
             const SizedBox(width: 15),
             Expanded(

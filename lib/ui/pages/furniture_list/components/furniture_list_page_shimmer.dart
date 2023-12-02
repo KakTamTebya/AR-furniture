@@ -17,7 +17,7 @@ class FurnitureListPageShimmer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            height: 166.2,
+            height: (MediaQuery.of(context).size.width - defaultPadding * 3) / 2,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(defaultCircularRadius),
               color: theme.hintColor,

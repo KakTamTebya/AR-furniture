@@ -50,8 +50,8 @@ class FavouritesPage extends StatelessWidget {
                   return SliverList.builder(
                     itemCount: itemsList.length,
                     itemBuilder: (context, index) => FavouritesPageItem(
-                        furnitureItem: itemsList[index].key,
-                        isFavourite: itemsList[index].value),
+                      furnitureItem: itemsList[index].key,
+                      isFavourite: itemsList[index].value),
                   );
                 }
                 if (state is FavouritesPageLoadingFail) {

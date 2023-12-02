@@ -38,29 +38,29 @@ class FavouritesPage extends StatelessWidget {
             const SliverToBoxAdapter(child: SizedBox(height: 15)),
             BlocBuilder<FavouritesPageBloc, FavouritesPageState>(
               builder: (context, state) {
-                // if (state is FavouritesPageLoaded) {
-                //   final itemsList = state.items.entries.toList();
-                //   if (itemsList.isEmpty) {
-                //     return SliverFillRemaining(
-                //       child: Center(
-                //         child: Text(S.of(context).emptyPageMessage),
-                //       ),
-                //     );
-                //   }
-                //   return SliverList.builder(
-                //     itemCount: itemsList.length,
-                //     itemBuilder: (context, index) => FavouritesPageItem(
-                //         furnitureItem: itemsList[index].key,
-                //         isFavourite: itemsList[index].value),
-                //   );
-                // }
-                // if (state is FavouritesPageLoadingFail) {
-                //   return SliverFillRemaining(
-                //     child: Center(
-                //       child: Text(state.exception.toString()),
-                //     ),
-                //   );
-                // }
+                if (state is FavouritesPageLoaded) {
+                  final itemsList = state.items.entries.toList();
+                  if (itemsList.isEmpty) {
+                    return SliverFillRemaining(
+                      child: Center(
+                        child: Text(S.of(context).emptyPageMessage),
+                      ),
+                    );
+                  }
+                  return SliverList.builder(
+                    itemCount: itemsList.length,
+                    itemBuilder: (context, index) => FavouritesPageItem(
+                        furnitureItem: itemsList[index].key,
+                        isFavourite: itemsList[index].value),
+                  );
+                }
+                if (state is FavouritesPageLoadingFail) {
+                  return SliverFillRemaining(
+                    child: Center(
+                      child: Text(state.exception.toString()),
+                    ),
+                  );
+                }
                 return SliverList.builder(
                   itemCount: 7,
                   itemBuilder: (context, index) => const FavouritesPageShimmer(),

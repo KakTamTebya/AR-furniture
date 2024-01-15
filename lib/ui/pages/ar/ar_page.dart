@@ -35,6 +35,7 @@ class _ArPageState extends State<ArPage> {
   late ARSessionManager arSessionManager;
   late ARObjectManager arObjectManager;
   late ARAnchorManager arAnchorManager;
+  bool _addModelMutex = false;
   ARNode? _node;
   ARAnchor? _anchor;
 
@@ -53,6 +54,9 @@ class _ArPageState extends State<ArPage> {
           ARView(
             onARViewCreated: onARViewCreated,
             planeDetectionConfig: PlaneDetectionConfig.horizontalAndVertical,
+            permissionPromptDescription: S.of(context).permissionPromptDescription,
+            permissionPromptButtonText: S.of(context).permissionPromptButtonText,
+            permissionPromptParentalRestriction: S.of(context).permissionPromptParentalRestriction,
           ),
           Align(
             alignment: Alignment.topLeft,
@@ -86,7 +90,7 @@ class _ArPageState extends State<ArPage> {
     arAnchorManager = anchorManager;
     arSessionManager.onInitialize(
       showFeaturePoints: false,
-      showWorldOrigin: true,
+      showWorldOrigin: false,
       handlePans: true,
       handleRotation: true,
     );
@@ -109,9 +113,10 @@ class _ArPageState extends State<ArPage> {
     }
     var singleHitTestResult = hitTestResults.firstWhereOrNull(
       (hitTestResult) => hitTestResult.type == ARHitTestResultType.plane);
-    if (singleHitTestResult == null) {
+    if (singleHitTestResult == null || _addModelMutex) {
       return;
     }
+    _addModelMutex = true;
     var newAnchor =
       ARPlaneAnchor(transformation: singleHitTestResult.worldTransform);
     bool didAddAnchor = await arAnchorManager.addAnchor(newAnchor) ?? false;
@@ -132,5 +137,6 @@ class _ArPageState extends State<ArPage> {
       arAnchorManager.removeAnchor(newAnchor);
     }
     _node = newNode;
+    _addModelMutex = false;
   }
 }

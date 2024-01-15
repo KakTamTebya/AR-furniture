@@ -31,6 +31,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "favourites": MessageLookupByLibrary.simpleMessage("Избранное"),
         "floorFurniture":
             MessageLookupByLibrary.simpleMessage("Напольная мебель"),
+        "permissionPromptButtonText":
+            MessageLookupByLibrary.simpleMessage("Разрешить доступ"),
+        "permissionPromptDescription": MessageLookupByLibrary.simpleMessage(
+            "Приложению нужно разрешить доступ к камере для работы AR"),
+        "permissionPromptParentalRestriction":
+            MessageLookupByLibrary.simpleMessage(
+                "Доступ к камере ограничен настройками"),
         "removeModel": MessageLookupByLibrary.simpleMessage("Удалить модель"),
         "showMore": MessageLookupByLibrary.simpleMessage("далее"),
         "view3dModel": MessageLookupByLibrary.simpleMessage("3D модель"),

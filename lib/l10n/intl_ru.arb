@@ -8,5 +8,8 @@
   "view3dModel": "3D модель",
   "emptyPageMessage": "Здесь пока ничего нет",
   "removeModel": "Удалить модель",
-  "arError": "Что-то пошло не так. Попробуйте еще раз."
+  "arError": "Что-то пошло не так. Попробуйте еще раз.",
+  "permissionPromptDescription": "Приложению нужно разрешить доступ к камере для работы AR",
+  "permissionPromptButtonText": "Разрешить доступ",
+  "permissionPromptParentalRestriction": "Доступ к камере ограничен настройками"
 }

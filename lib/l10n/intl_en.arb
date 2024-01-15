@@ -8,5 +8,8 @@
   "view3dModel": "View 3D model",
   "emptyPageMessage": "There's nothing here yet",
   "removeModel": "Remove model",
-  "arError": "Something went wrong. Try again"
+  "arError": "Something went wrong. Try again",
+  "permissionPromptDescription": "Camera permission must be given to the app for AR functions to work",
+  "permissionPromptButtonText": "Grant Permission",
+  "permissionPromptParentalRestriction": "Camera permission is restricted by the OS, please check parental control settings"
 }

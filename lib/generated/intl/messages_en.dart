@@ -31,6 +31,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "favourites": MessageLookupByLibrary.simpleMessage("Favourites"),
         "floorFurniture":
             MessageLookupByLibrary.simpleMessage("Floor furniture"),
+        "permissionPromptButtonText":
+            MessageLookupByLibrary.simpleMessage("Grant Permission"),
+        "permissionPromptDescription": MessageLookupByLibrary.simpleMessage(
+            "Camera permission must be given to the app for AR functions to work"),
+        "permissionPromptParentalRestriction": MessageLookupByLibrary.simpleMessage(
+            "Camera permission is restricted by the OS, please check parental control settings"),
         "removeModel": MessageLookupByLibrary.simpleMessage("Remove model"),
         "showMore": MessageLookupByLibrary.simpleMessage("show more"),
         "view3dModel": MessageLookupByLibrary.simpleMessage("View 3D model"),

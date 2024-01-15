@@ -149,6 +149,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Camera permission must be given to the app for AR functions to work`
+  String get permissionPromptDescription {
+    return Intl.message(
+      'Camera permission must be given to the app for AR functions to work',
+      name: 'permissionPromptDescription',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Grant Permission`
+  String get permissionPromptButtonText {
+    return Intl.message(
+      'Grant Permission',
+      name: 'permissionPromptButtonText',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Camera permission is restricted by the OS, please check parental control settings`
+  String get permissionPromptParentalRestriction {
+    return Intl.message(
+      'Camera permission is restricted by the OS, please check parental control settings',
+      name: 'permissionPromptParentalRestriction',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
